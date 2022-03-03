@@ -1,5 +1,12 @@
 # toy dev
 
+take.4
+1. 제일바깥 gitignore 추가
+   1. .idea ignore 되어라!
+   
+
+take.3
+
 두번째 커밋 내용
 1. jpa - mysql에 테이블 생성 추가 
    1. application 에 추가 
