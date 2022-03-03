@@ -1,7 +1,10 @@
 package com.example.toy.common.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class User {
 
