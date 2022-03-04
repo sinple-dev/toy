@@ -1,5 +1,9 @@
 # toy dev
 
+take.7
+스프링 버전 최신으로 변경(2.6.4)
+web axios 설정 ~ing
+
 take.6
 1. 스프링부트 target 폴더 ignore, delete
 

@@ -1,6 +1,19 @@
+
+const PORT = process.env.PORT || 3000;
+const config = {
+  SERVER() {
+    return {
+      host: 'localhost',
+      port: PORT,
+      timing: false
+    }
+  },
+}
+
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // 환경변수 설정하기 - https://develop365.gitlab.io/nuxtjs-0.10.7-doc/ko/api/configuration-env/
   env: {
@@ -8,10 +21,13 @@ export default {
     NODE_ENV: process.env.NODE_ENV
   },
 
+
+  // 추후 dev production 분기 처리 필요
+  dev: (process.env.NODE_ENV !== 'production'),
+
   // 웹포트 3000 고정
-  server: {
-    port: 3000
-  },
+  server: config.SERVER(),
+  srcDir: 'src/', //default directory 변경
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'web',
@@ -31,6 +47,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/src/styles/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -44,12 +61,38 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
+    '@nuxtjs/composition-api'
   ],
 
+  router: {
+    base: '/',
+    middleware: 'user-agent'
+  },
+
+  axios: {
+    proxy: true,
+    debug: true,
+    progress: true, // 로딩바를 사용 디폴트 true,
+  },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8080', // 분기 필요
+      secure: false,
+      changeOrigin: true
+    }
+  },
+
+
+  // 인증,권한 설정
+  auth: {
+
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
