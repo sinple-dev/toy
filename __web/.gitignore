@@ -1,9 +1,0 @@
-node_modules
-*.log
-.nuxt
-nuxt.d.ts
-.output
-.env
-README.md
-web.iml
-package-lock.json
