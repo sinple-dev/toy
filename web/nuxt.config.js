@@ -33,6 +33,7 @@ export default {
     title: 'web',
     htmlAttrs: {
       lang: 'en'
+
     },
     meta: [
       { charset: 'utf-8' },
@@ -47,11 +48,12 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/src/styles/main.scss'
+    '@/styles/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '@/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,7 +63,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
-    '@nuxtjs/composition-api'
+    '@nuxtjs/composition-api/module'
   ],
 
   router: {

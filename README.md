@@ -1,4 +1,6 @@
 # toy dev
+take.8
+store, axios 설정 ~ing
 
 take.7
 스프링 버전 최신으로 변경(2.6.4)

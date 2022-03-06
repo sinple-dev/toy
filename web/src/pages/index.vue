@@ -13,11 +13,12 @@ export default defineComponent({
   layout: 'indexPage',
   async setup(props, context) {
 
+    const context1 = useContext();
 
-    const { $axios } = useContext()
 
     onMounted(() => {
 
+      context1.store.$axios.get('test')
 
     })
 
