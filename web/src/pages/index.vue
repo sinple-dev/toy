@@ -7,7 +7,6 @@
 <script lang="ts">
 import {defineComponent, onMounted, useContext } from "@nuxtjs/composition-api";
 
-
 export default defineComponent({
   name: 'IndexPage',
   layout: 'indexPage',
@@ -18,7 +17,9 @@ export default defineComponent({
 
     onMounted(() => {
 
-      context1.store.$axios.get('test')
+      // const asdf: string = context1.$axios.get('/home');
+      // console.log(asdf)
+
 
     })
 

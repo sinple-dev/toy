@@ -1,4 +1,8 @@
 # toy dev
+take. 9
+container config
+ajp connector 추가 - 필요여부 확인해야해
+
 take.8
 store, axios 설정 ~ing
 

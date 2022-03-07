@@ -9,3 +9,8 @@ declare module "@nuxt/types" {
   }
 }
 
+declare module 'vue/types/vue' {
+  interface Vue {
+    $axios: NuxtAxiosInstance
+  }
+}
