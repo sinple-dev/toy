@@ -11,6 +11,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
+    "ohmyfetch": "^0.4.15",
     "vue": "^3.2.32"
   }
 }

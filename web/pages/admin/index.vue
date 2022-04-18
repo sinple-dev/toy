@@ -6,18 +6,19 @@
   </div>
 </template>
 
-<script>
-import Vue from 'vue';
-export default Vue.extend({
-  async created(){
+<script setup>
+
+  import {useAsyncData, useRoute} from "nuxt3/app";
+  import { $fetch } from 'ohmyfetch';
+
+  const route = useRoute();
+
+  const { users } = $fetch('http://localhost:8080', {mode: 'no-cors'})
+
+  console.log(users);
 
 
-    const albums = await this.$axios.$get("/api/home");
-
-    console.log(albums)
-
-  }
-})
+    // const albums = await this.$axios.$get("/api/home");
 </script>
 
 <style scoped>
