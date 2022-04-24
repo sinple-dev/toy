@@ -21,6 +21,7 @@ console.log("data" , data);
 
 let test = "";
 
+
 fetch("http://localhost:8080/api/test", {
   method: "GET",
   mode: 'no-cors',
