@@ -1,11 +1,14 @@
 <template>
-  header
+  <div>
+    header
+    <NuxtLink to="/login">login</NuxtLink>
+  </div>
+
 </template>
 
-<script>
-export default {
-  name: "theHeader"
-}
+<script setup>
+
+
 </script>
 
 <style scoped>

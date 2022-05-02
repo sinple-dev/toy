@@ -1,5 +1,5 @@
 <template>
-  <h1>Index page
-  aaaaaaaaaaaaaaaaaaa
+  <h1>
+    Index page
   </h1>
 </template>
