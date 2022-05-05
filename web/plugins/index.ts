@@ -7,3 +7,6 @@ import '@/mixins/global';
 Vue.use(VueCompositionApi);
 Vue.use(Vuex);
 
+
+
+
