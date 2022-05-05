@@ -1,21 +1,46 @@
 <template>
-  <Tutorial/>
+  <div>
+
+    {{ state }}
+    aaaaaaaaaaa
+    {{ count }}
+    tesetstset
+
+    {{message}}
+    <button @click="count++">{{ count }}</button>
+
+  </div>
 </template>
-
 <script lang="ts">
-import Vue from 'vue'
+import {defineComponent, onMounted, reactive, ref} from "@vue/composition-api";
 
-export default Vue.extend({
+interface State {
+  id: number;
+}
 
-  mounted() {
+export default defineComponent({
+  layout: 'main',
+  setup() {
+    const state = reactive<State>({
+        id: 1,
 
+    });
+    const count = ref(0)
 
-    const ip = this.$axios.$get('http://localhost:8080/api/test')
+    onMounted(async () => {
+    });
 
-    console.log("ip",ip);
-
+    return {
+      state,
+      count,
+    };
   },
 
+  data() {
+    return {
+      message: 'not updated'
+    }
+  },
 
-})
+});
 </script>

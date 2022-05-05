@@ -5,9 +5,19 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "index.vue"
-}
+import Vue from 'vue'
+
+export default Vue.extend({
+  async mounted() {
+
+    const ip = await this.$axios.$get('http://localhost:8080/api/test')
+
+    console.log("ip",ip);
+
+  },
+
+});
+
 </script>
 
 <style scoped>
