@@ -40,6 +40,11 @@ export default {
     "@nuxtjs/axios",
   ],
 
+  axios: {
+    // proxy: true
+  },
+
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
