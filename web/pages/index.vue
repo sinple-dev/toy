@@ -1,14 +1,6 @@
 <template>
   <div>
-
-    {{ state }}
-    aaaaaaaaaaa
-    {{ count }}
-    tesetstset
-
-    {{message}}
-    <button @click="count++">{{ count }}</button>
-
+    인덱스 페이지
   </div>
 </template>
 <script lang="ts">
@@ -35,12 +27,5 @@ export default defineComponent({
       count,
     };
   },
-
-  data() {
-    return {
-      message: 'not updated'
-    }
-  },
-
 });
 </script>

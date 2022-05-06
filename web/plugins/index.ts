@@ -5,3 +5,4 @@ import '@/mixins/global';
 
 Vue.use(VueCompositionApi);
 Vue.use(Vuex);
+Vue.config.productionTip = true;

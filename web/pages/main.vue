@@ -1,24 +1,18 @@
 <template>
   <div>
-    <b-button>로그인</b-button>
+    메인 페이지
   </div>
 </template>
 
 <script lang="ts">
 import {defineComponent} from "@vue/composition-api";
 export default defineComponent({
-  async mounted() {
-
-    const ip = await this.$axios.$get('http://localhost:8080/api/test')
-
-    console.log("ip",ip);
-
-  },
   setup() {
 
   }
 });
 </script>
-<style lang="scss" scoped>
+
+<style scoped>
 
 </style>

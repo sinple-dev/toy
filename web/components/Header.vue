@@ -1,24 +1,22 @@
 <template>
   <div>
-    <b-button>로그인</b-button>
+    <NuxtLink to="/">시작</NuxtLink>
+    <NuxtLink to="/main">메인</NuxtLink>
+    <NuxtLink to="/login">로그인</NuxtLink>
   </div>
 </template>
-
 <script lang="ts">
 import {defineComponent} from "@vue/composition-api";
 export default defineComponent({
-  async mounted() {
-
-    const ip = await this.$axios.$get('http://localhost:8080/api/test')
-
-    console.log("ip",ip);
-
-  },
   setup() {
 
-  }
+  },
 });
 </script>
 <style lang="scss" scoped>
-
+  div {
+    width: 100%;
+    height: 50px;
+  }
 </style>
+
