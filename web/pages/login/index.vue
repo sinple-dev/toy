@@ -6,6 +6,9 @@
 
 <script lang="ts">
 import {defineComponent} from "@vue/composition-api";
+
+import {store} from "@/store/index";
+
 export default defineComponent({
   async mounted() {
 

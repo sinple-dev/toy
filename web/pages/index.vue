@@ -4,13 +4,13 @@
   </div>
 </template>
 <script lang="ts">
-import {defineComponent, onMounted, reactive, ref} from "@vue/composition-api";
+import {onMounted, reactive, ref} from "@vue/composition-api";
 
 interface State {
   id: number;
 }
 
-export default defineComponent({
+export default {
   layout: 'main',
   setup() {
     const state = reactive<State>({
@@ -27,5 +27,5 @@ export default defineComponent({
       count,
     };
   },
-});
+};
 </script>
