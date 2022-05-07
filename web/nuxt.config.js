@@ -40,9 +40,9 @@ export default {
     'bootstrap-vue/nuxt',
     "@nuxtjs/axios",
   ],
-
   axios: {
-    // proxy: true
+    baseURL: 'http://localhost:8080/',
+    proxy: true
   },
 
 

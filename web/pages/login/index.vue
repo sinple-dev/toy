@@ -5,23 +5,22 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "@vue/composition-api";
-
-import {store} from "@/store/index";
+import { defineComponent, onMounted} from "@vue/composition-api";
+import axios from 'axios';
 
 export default defineComponent({
-  async mounted() {
+  async setup() {
 
-    const ip = await this.$axios.$get('http://localhost:8080/api/test')
+    onMounted(async () => {
+      await onFetch();
+    });
 
-    console.log("ip",ip);
-
-  },
-  setup() {
+    async function onFetch() {
+      const ip = await axios.get('http://localhost:8080/api/test');
+      console.log(ip);
+    }
 
   }
 });
-</script>
-<style lang="scss" scoped>
 
-</style>
+</script>

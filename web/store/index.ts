@@ -1,15 +1,13 @@
-import Vue from 'vue';
-import Vuex, {ActionContext, StoreOptions} from 'vuex';
 
-Vue.use(Vuex);
+import {ActionContext, StoreOptions} from 'vuex';
 
 interface State {
   count: number;
 }
 
-export const store: StoreOptions<State> = {
+export const userStore: StoreOptions<State> = {
   state: {
-    count: 0,
+    count: 1790,
   },
   mutations: {
     setCount(state: State, count: number) {
@@ -27,4 +25,6 @@ export const store: StoreOptions<State> = {
   },
 };
 
-export const {mutations, state, getters, actions} = store;
+export const {mutations, state, getters, actions} = userStore;
+
+
