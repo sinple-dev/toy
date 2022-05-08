@@ -1,4 +1,4 @@
-package api.controller;
+package com.example.toy.auth.controller;
 
 import com.example.toy.common.model.result.SuccessResult;
 import com.example.toy.common.repository.UserRepository;

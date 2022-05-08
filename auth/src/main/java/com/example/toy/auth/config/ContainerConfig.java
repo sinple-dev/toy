@@ -1,4 +1,4 @@
-package api.config;
+package com.example.toy.auth.config;
 
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Value;

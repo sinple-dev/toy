@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ state }}
     인덱스 페이지
   </div>
 </template>
@@ -15,7 +16,6 @@ export default {
   setup() {
     const state = reactive<State>({
         id: 1,
-
     });
     const count = ref(0)
 
