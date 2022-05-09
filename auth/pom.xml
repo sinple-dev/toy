@@ -38,6 +38,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+        <!-- 스프링 시큐리티 구현-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
     </dependencies>
     <build>

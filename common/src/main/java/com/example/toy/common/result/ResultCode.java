@@ -1,4 +1,4 @@
-package com.example.toy.common.model.result;
+package com.example.toy.common.result;
 
 public enum ResultCode {
 

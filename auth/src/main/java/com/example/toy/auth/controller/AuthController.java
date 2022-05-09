@@ -1,6 +1,6 @@
 package com.example.toy.auth.controller;
 
-import com.example.toy.common.model.result.SuccessResult;
+import com.example.toy.common.result.SuccessResult;
 import com.example.toy.common.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
