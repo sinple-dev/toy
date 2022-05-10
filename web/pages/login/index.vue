@@ -29,8 +29,16 @@ export default defineComponent({
     });
 
     async function doLogin() {
-      const ip = await axios.get('http://localhost:8081/login');
-      console.log(ip);
+      // const ip = await axios.get('http://localhost:8081/login');
+      // console.log(ip);
+
+      const formData = new FormData();
+      formData.append('email', state.email);
+      formData.append('password', state.password);
+      const data = await axios.post('http://localhost:8081/login', formData);
+
+      console.log("data", data);
+
     }
 
     return {

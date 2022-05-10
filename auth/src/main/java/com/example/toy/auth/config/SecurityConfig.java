@@ -2,17 +2,22 @@ package com.example.toy.auth.config;
 
 import com.example.toy.auth.security.LoginFailureHandler;
 import com.example.toy.auth.security.LoginSuccessHandler;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+@Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 //위의 SecurityConfig에 붙은 @EnableWebSecurity을 보면 WebSecurityConfiguration.class,
 // SpringWebMvcImportSelector.class, OAuth2ImportSelector.class, HttpSecurityConfiguration.class들을 import해서 실행시켜주는 것을 알 수 있습니다.
 // 해당 annotation을 붙여야지 Securiry를 활성화 시킬 수 있습니다.
@@ -65,11 +70,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() //보호된 리소스 URI에 접근할 수 있는 권한을 설정
-                .antMatchers("/login*/**").permitAll() //전체 접근 허용
+                .antMatchers("/login").permitAll() //전체 접근 허용
                 .antMatchers("/error").permitAll()
-                .antMatchers("/logout/**").permitAll()
+                .antMatchers("/logout").permitAll()
                 .antMatchers("/myPage").hasRole("ADMIN") //admin이라는 롤을 가진 사용자만 접근 허용
-                .antMatchers("/chatbot/**").permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
             .and().formLogin()
                 .loginPage("/login")
@@ -97,10 +102,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-
     @Bean
-    public LoginSuccessHandler loginSuccessHandler() {
-        return new LoginSuccessHandler();
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }
