@@ -17,7 +17,7 @@ public class AuthController {
     UserRepository userRepository;
 
 
-    @GetMapping("/login")
+    @GetMapping("/test")
     public ResponseEntity<?> get() {
 
         SuccessResult result = new SuccessResult();
