@@ -3,6 +3,9 @@ package com.example.toy.common.Entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @Getter
@@ -30,6 +33,26 @@ public class User {
     private String name;
 
     @Column
-    private String auth;
+    private String roles;
+
+    @Column
+    private String permissions;
+
+    public List<String> getRoleList(){
+        if(this.roles.length()>0){
+            return Arrays.asList(this.roles.split(","));
+        }
+
+        return new ArrayList<>();
+    }
+
+    public List<String> getPermissionList(){
+        if(this.permissions.length()>0){
+            return Arrays.asList(this.permissions.split(","));
+        }
+
+        return new ArrayList<>();
+    }
+
 
 }

@@ -24,17 +24,19 @@ export default defineComponent({
   setup() {
 
     const state = reactive<State>({
-      email: '',
-      password: '',
+      email: 'asd@naver.com',
+      password: '1234',
     });
 
     async function doLogin() {
-      // const ip = await axios.get('http://localhost:8081/login');
-      // console.log(ip);
+      // const ip = await axios.get('http://localhost:8081/auth/signup');
+      // console.log("test", ip);
 
       const formData = new FormData();
-      formData.append('email', state.email);
-      formData.append('password', state.password);
+      // formData.append('email', state.email);
+      // formData.append('password', state.password);
+      formData.append('email', "asd@naver.com");
+      formData.append('password', "1234");
       const data = await axios.post('http://localhost:8081/login', formData);
 
       console.log("data", data);

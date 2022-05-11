@@ -3,6 +3,7 @@ package com.example.toy.auth.config;
 import com.example.toy.auth.security.LoginFailureHandler;
 import com.example.toy.auth.security.LoginSuccessHandler;
 import com.example.toy.common.filter.CorsFilter;
+import com.example.toy.common.services.MyUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -72,13 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/favicon*/**")
 //                .antMatchers("/img/**");
 //    }
-//
-//
-    /* * 스프링 시큐리티 규칙 */
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-
         http
                 .csrf().disable()
                 .cors().configurationSource(corsConfigurationSource()).and()
@@ -86,32 +83,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll() //전체 접근 허용
                 .antMatchers("/error").permitAll()
                 .antMatchers("/logout").permitAll()
+                .antMatchers("/auth/signup").permitAll()
                 .antMatchers("/myPage").hasRole("ADMIN") //admin이라는 롤을 가진 사용자만 접근 허용
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
             .and().formLogin()
+                .usernameParameter("email")
+                .passwordParameter("password")
                 .successHandler(loginSuccessHandler)
                 .failureHandler(loginFailureHandler)
                 .permitAll()
             .and().logout()
                 .permitAll();
 
-
-
-        //해당 기능을 사용하기 위해서는 프론트단에서 csrf토큰값 보내줘야함
-
-//            .addFilter(jwtAuthenticationFilter()) //Form Login에 사용되는 custom AuthenticationFilter 구현체를 등록
-//            .addFilter(jwtAuthorizationFilter()) //Header 인증에 사용되는 BasicAuthenticationFilter 구현체를 등록
-//            .exceptionHandling()
-//                .accessDeniedHandler(accessDeniedHandler())
-//                .authenticationEntryPoint(authenticationEntryPoint());
-
-
-//        http.authorizeRequests()
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers("/**").permitAll();
-
     }
+
+    @Autowired
+    MyUserDetailsService myUserDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(myUserDetailsService);
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -127,27 +127,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
-
-
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
-
-
-
-//
-//    @Bean
-//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
 }
