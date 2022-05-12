@@ -25,9 +25,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         System.out.println("로그인 성공");
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         User user = userPrincipal.getUser();
