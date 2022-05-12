@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,23 +37,16 @@ public class User {
     private String roles;
 
     @Column
-    private String permissions;
+    private Long updateBy;
+
+    @Column
+    private Date updateDt;
 
     public List<String> getRoleList(){
         if(this.roles.length()>0){
             return Arrays.asList(this.roles.split(","));
         }
-
         return new ArrayList<>();
     }
-
-    public List<String> getPermissionList(){
-        if(this.permissions.length()>0){
-            return Arrays.asList(this.permissions.split(","));
-        }
-
-        return new ArrayList<>();
-    }
-
 
 }

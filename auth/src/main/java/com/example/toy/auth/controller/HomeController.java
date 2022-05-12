@@ -8,7 +8,6 @@ public class HomeController {
 
     @GetMapping("")
     public String home() {
-        System.out.println("들어왔다");
         return "Hello, AUTH 인증 해줘!";
     }
 

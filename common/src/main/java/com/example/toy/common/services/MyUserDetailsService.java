@@ -1,7 +1,7 @@
 package com.example.toy.common.services;
 
 import com.example.toy.common.Entity.User;
-import com.example.toy.common.principal.MyUserPrincipal;
+import com.example.toy.common.principal.UserPrincipal;
 import com.example.toy.common.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +27,6 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new MyUserPrincipal(user);
+        return new UserPrincipal(user);
     }
 }

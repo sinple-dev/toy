@@ -106,12 +106,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.userDetailsService(myUserDetailsService);
     }
 
-
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
