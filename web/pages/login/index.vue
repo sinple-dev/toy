@@ -36,7 +36,7 @@ export default defineComponent({
       // formData.append('email', state.email);
       // formData.append('password', state.password);
       formData.append('email', "asd@naver.com");
-      formData.append('password', "12344");
+      formData.append('password', "1234");
       const data = await axios.post('http://localhost:8081/login', formData);
 
       console.log("data", data);

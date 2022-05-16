@@ -2,9 +2,7 @@ package com.example.toy.auth.config;
 
 import com.example.toy.auth.security.LoginFailureHandler;
 import com.example.toy.auth.security.LoginSuccessHandler;
-import com.example.toy.common.filter.CorsFilter;
 import com.example.toy.common.services.MyUserDetailsService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +12,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -41,15 +34,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     LoginFailureHandler loginFailureHandler;
 
+    @Autowired
+    MyUserDetailsService myUserDetailsService;
 
 
-//    /*UserDetailsService userDetailsService, PasswordEncoder passwordEncoder,*/
-//    public void SpringSecurityConfig(AuthenticationProvider authenticationProvider) {
-//        this.authenticationProvider = authenticationProvider;
-//    }
-//
-//
-//    /*
+    //    /*
 //     * 스프링 시큐리티가 사용자를 인증하는 방법이 담긴 객체.
 //     */
 //    @Override
@@ -63,16 +52,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //
 //    /* * 스프링 시큐리티 룰을 무시하게 하는 Url 규칙(여기 등록하면 규칙 적용하지 않음) */
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring()
-//                .antMatchers("/resources/**")
-//                .antMatchers("/css/**")
-//                .antMatchers("/vendor/**")
-//                .antMatchers("/js/**")
-//                .antMatchers("/favicon*/**")
-//                .antMatchers("/img/**");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers("/resources/**")
+                .antMatchers("/css/**")
+                .antMatchers("/vendor/**")
+                .antMatchers("/js/**")
+                .antMatchers("/favicon*/**")
+                .antMatchers("/img/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -87,24 +76,43 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/myPage").hasRole("ADMIN") //admin이라는 롤을 가진 사용자만 접근 허용
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
-            .and().formLogin()
+
+                // 토큰을 활용하면 세션이 필요 없으므로 STATELESS로 설정하여 Session을 사용하지 않는다.
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                .and()
+                .formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(loginSuccessHandler)
                 .failureHandler(loginFailureHandler)
                 .permitAll()
-            .and().logout()
+                .and()
+                .logout()
                 .permitAll();
 
     }
 
-    @Autowired
-    MyUserDetailsService myUserDetailsService;
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+//        authenticationManagerBuilder.userDetailsService(myUserDetailsService);
+//    }
+
+    @Bean
+    public CustomAuthenticationProvider customAuthenticationProvider() {
+        return new CustomAuthenticationProvider(myUserDetailsService, bCryptPasswordEncoder());
+    }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(myUserDetailsService);
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
+        authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider());
     }
+
+
+
+
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

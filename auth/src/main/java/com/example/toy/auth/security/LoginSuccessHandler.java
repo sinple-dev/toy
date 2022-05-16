@@ -17,10 +17,11 @@ import java.io.IOException;
 import java.util.Date;
 
 @Component
-public class LoginSuccessHandler implements AuthenticationSuccessHandler{
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
     UserRepository userRepository;
+
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -29,8 +30,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         User user = userPrincipal.getUser();
-        user.setUpdateBy(user.getId());
-        user.setUpdateDt(new Date());
+        user.setUpdatedBy(user.getId());
+        user.setUpdatedDt(new Date());
         userRepository.save(user);
+
+        final String token = TokenUtils.generateJwtToken(user);
+        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
+
     }
 }
