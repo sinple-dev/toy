@@ -21,7 +21,7 @@ import java.util.Map;
 public final class TokenUtils {
 
     @Value("${token.jwt.secretKey}")
-    private String secretKey;
+    private static String secretKey;
 
 
     public static String generateJwtToken(User user) {
