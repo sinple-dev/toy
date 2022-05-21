@@ -34,7 +34,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         user.setUpdatedDt(new Date());
         userRepository.save(user);
 
-        final String token = TokenUtils.generateJwtToken(user);
+        String token = TokenUtils.generateJwtToken(user);
         response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
 
     }
