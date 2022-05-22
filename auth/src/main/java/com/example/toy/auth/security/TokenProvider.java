@@ -20,8 +20,7 @@ import java.util.Map;
 @Service
 @Log4j2
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class TokenUtils {
-
+public class TokenProvider {
 
     private static String secretKey;
 

@@ -9,8 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Access;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -34,7 +32,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         user.setUpdatedDt(new Date());
         userRepository.save(user);
 
-        String token = TokenUtils.generateJwtToken(user);
+        String token = TokenProvider.generateJwtToken(user);
         response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
 
     }

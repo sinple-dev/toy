@@ -94,11 +94,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//        authenticationManagerBuilder.userDetailsService(myUserDetailsService);
-//    }
-
     @Bean
     public CustomAuthenticationProvider customAuthenticationProvider() {
         return new CustomAuthenticationProvider(myUserDetailsService, bCryptPasswordEncoder());
@@ -108,11 +103,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) {
         authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider());
     }
-
-
-
-
-
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
