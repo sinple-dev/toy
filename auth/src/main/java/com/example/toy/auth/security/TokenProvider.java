@@ -39,7 +39,7 @@ public class TokenProvider {
                 .setSubject(user.getEmail())
                 .setHeader(createHeader())
                 .setClaims(createClaims(user))
-                .setExpiration(createExpireDateForOneYear())
+                .setExpiration(createExpireDateForOneYear(30))
                 .signWith(SignatureAlgorithm.HS256, createSigningKey());
         return builder.compact();
     }
@@ -67,10 +67,10 @@ public class TokenProvider {
         return header.split(" ")[1];
     }
 
-    private static Date createExpireDateForOneYear() {
+    private static Date createExpireDateForOneYear(int day) {
         // 토큰 만료시간은 30일으로 설정
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, 30);
+        c.add(Calendar.DATE, day);
         return c.getTime();
     }
 

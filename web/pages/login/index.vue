@@ -24,7 +24,7 @@ export default defineComponent({
   setup() {
 
     const state = reactive<State>({
-      email: 'asd@naver.com',
+      email: 'admin@naver.com',
       password: '1234',
     });
 

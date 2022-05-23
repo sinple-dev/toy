@@ -18,7 +18,7 @@ import java.util.List;
 public class User {
 
     @Id
-    @Column(unique = true)
+    @Column(unique = true, name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -34,8 +34,8 @@ public class User {
     private String name;
 
     @Column
-    private String roles;
-
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<UsersRoles> usersRoles;
 
     @Column
     private Date createdDt;
@@ -54,12 +54,5 @@ public class User {
 
     @Column
     private Boolean deleted;
-
-    public List<String> getRoleList(){
-        if(this.roles.length()>0){
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
 
 }

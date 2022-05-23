@@ -54,13 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    /* * 스프링 시큐리티 룰을 무시하게 하는 Url 규칙(여기 등록하면 규칙 적용하지 않음) */
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers("/resources/**")
-                .antMatchers("/css/**")
-                .antMatchers("/vendor/**")
-                .antMatchers("/js/**")
-                .antMatchers("/favicon*/**")
-                .antMatchers("/img/**");
+//        web.ignoring()
+//                .antMatchers("/resources/**", "/css/**", "/js/**", "/favicon*/**", "/img/**");
     }
 
     @Override

@@ -1,7 +1,9 @@
 package com.example.toy.auth.security;
 
+import com.example.toy.common.Entity.AuthToken;
 import com.example.toy.common.Entity.User;
 import com.example.toy.common.principal.UserPrincipal;
+import com.example.toy.common.repository.AuthTokenRepository;
 import com.example.toy.common.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,8 +20,10 @@ import java.util.Date;
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
+    @Autowired
+    private AuthTokenRepository authTokenRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -33,7 +37,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         userRepository.save(user);
 
         String token = TokenProvider.generateJwtToken(user);
-        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
+        AuthToken authToken = new AuthToken();
+        authToken.setAccessToken(token);
+        authTokenRepository.save(authToken);
 
+        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
     }
 }
