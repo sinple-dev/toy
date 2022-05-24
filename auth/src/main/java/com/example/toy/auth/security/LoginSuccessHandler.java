@@ -36,11 +36,17 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         user.setUpdatedDt(new Date());
         userRepository.save(user);
 
-        String token = TokenProvider.generateJwtToken(user);
+        // 1. accessToken 검증
+        // 2. accessToken 만료시 refreshToken 검증
+        // 2-1. refreshToken 만료 안됬으면 accessToken 발급
+        // 2-2. refreshToken 만료시 재발급
+        String accessToken = TokenProvider.createAccessToken(user);
+        String refreshToken = TokenProvider.createRefreshToken(user);
         AuthToken authToken = new AuthToken();
-        authToken.setAccessToken(token);
+        authToken.setAccessToken(accessToken);
+        authToken.setRefreshToken(refreshToken);
         authTokenRepository.save(authToken);
 
-        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + token);
+        response.addHeader(AuthConstants.AUTH_HEADER, AuthConstants.TOKEN_TYPE + " " + accessToken);
     }
 }

@@ -34,12 +34,20 @@ public class TokenProvider {
     }
 
 
-    public static String generateJwtToken(User user) {
+    public static String createAccessToken(User user) {
+        return generateJwtToken(user, 1);
+    }
+
+    public static String createRefreshToken(User user) {
+        return generateJwtToken(user, 30);
+    }
+
+    private static String generateJwtToken(User user, int time) {
         JwtBuilder builder = Jwts.builder()
                 .setSubject(user.getEmail())
                 .setHeader(createHeader())
                 .setClaims(createClaims(user))
-                .setExpiration(createExpireDateForOneYear(30))
+                .setExpiration(createExpireDateForOneYear(time))
                 .signWith(SignatureAlgorithm.HS256, createSigningKey());
         return builder.compact();
     }
