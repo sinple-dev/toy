@@ -30,8 +30,13 @@ spring:
           useUnicode: true
         format_sql: true
 
+  batch:
+    jdbc:
+      initialize-schema: always
 
-#      naming: #엔티티와 테이블에 대한 네이밍 전략 옵션이 추가되면 camel 형식대로 컬럼명
+
+
+  #      naming: #엔티티와 테이블에 대한 네이밍 전략 옵션이 추가되면 camel 형식대로 컬럼명
 #        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 #    hibernate:
 #      # create 는 어플리케이션을 실행할때 데이터베이스를 생성한다.
