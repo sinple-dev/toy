@@ -1,0 +1,6 @@
+
+
+# 폴더 조회
+GET http://localhost:8080
+Content-Type: application/x-www-form-urlencoded
+Accept: application/json

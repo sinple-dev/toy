@@ -32,14 +32,19 @@ export default defineComponent({
       // const ip = await axios.get('http://localhost:8081/auth/signup');
       // console.log("test", ip);
 
-      const formData = new FormData();
-      // formData.append('email', state.email);
-      // formData.append('password', state.password);
-      formData.append('email', "asd@naver.com");
-      formData.append('password', "1234");
-      const data = await axios.post('http://localhost:8081/login', formData);
+      // const formData = new FormData();
+      // // formData.append('email', state.email);
+      // // formData.append('password', state.password);
+      // formData.append('email', "asd@naver.com");
+      // formData.append('password', "1234");
+      // const data = await axios.post('http://localhost:8081/login', formData);
+      //
+      // console.log("data", data);
 
-      console.log("data", data);
+
+      const data = await axios.get('http://localhost:8080/auth/healthcheck');
+
+      console.log(data);
 
     }
 

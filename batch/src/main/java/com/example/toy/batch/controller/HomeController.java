@@ -1,11 +1,7 @@
-package com.example.toy.api.controller;
+package com.example.toy.batch.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.time.LocalDateTime;
-import java.util.HashMap;
 
 @RestController
 public class HomeController {
