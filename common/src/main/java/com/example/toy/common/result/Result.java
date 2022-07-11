@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class Result {
     private String code;
+    private String status;
     private String message;
     private String messageCode;
     private Map<String, Object> extend;
@@ -13,6 +14,7 @@ public class Result {
     public Result() {
 
     }
+
 
     public Result(ResultCode resultCode) {
         this.code = resultCode.getCode();
@@ -56,6 +58,16 @@ public class Result {
     public String getMessage() {
         return message;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+
 
     public void setMessage(String message) {
         this.message = message;

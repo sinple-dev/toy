@@ -64,6 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .authorizeRequests() //보호된 리소스 URI에 접근할 수 있는 권한을 설정
+                .antMatchers("api/test").permitAll()
                 .antMatchers("/login").permitAll() //전체 접근 허용
                 .antMatchers("/error").permitAll()
                 .antMatchers("/logout").permitAll()

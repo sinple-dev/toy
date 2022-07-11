@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -19,14 +20,13 @@ import java.util.Map;
 
 @Service
 @Log4j2
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TokenProvider {
 
     private static String secretKey;
 
-    @Value("${token.jwt.secretKey}")
+//    @Value("${token.jwt.secretKey}")
     private void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
+        this.secretKey = "trest";
     }
 
     private String getSecretKey() {
