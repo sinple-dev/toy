@@ -24,8 +24,9 @@ public class ApiController {
 
         apiService.apiTest();
 
+        throw new NullPointerException("teastest");
 //        throw new CustomException("exception Controller");
-        throw new CustomException(ErrorCode.OVER_FILE_SIZE);
+//        throw new CustomException(ErrorCode.BAD_REQUEST);
 
 //        System.out.println("api test input");
 //        SuccessResult result = new SuccessResult();

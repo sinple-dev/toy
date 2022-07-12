@@ -1,43 +1,22 @@
 package com.example.toy.common.result;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@AllArgsConstructor
+@Getter
 public class ErrorResponse {
-
-    private String code;
     private String status;
     private String message;
-
-    ErrorResponse() {
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-    public String getStatus() {
-        return status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    private String code;
 
     public ErrorResponse(ErrorCode errorCode){
-        this.code = errorCode.getCode();
         this.status = errorCode.getStatus();
         this.message = errorCode.getMessage();
+        this.code = errorCode.getCode();
     }
 
-
+    public static ErrorResponse of(ErrorCode errorCode) {
+        return new ErrorResponse(errorCode);
+    }
 }
