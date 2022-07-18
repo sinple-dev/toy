@@ -21,7 +21,6 @@ public class ApiController {
     @GetMapping("/test")
     public ResponseEntity<?> me() throws Exception {
 
-
         apiService.apiTest();
 
         throw new NullPointerException("teastest");
