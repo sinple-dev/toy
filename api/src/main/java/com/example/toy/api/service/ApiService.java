@@ -2,6 +2,7 @@ package com.example.toy.api.service;
 
 import com.example.toy.common.repository.UserRepository;
 import com.example.toy.common.result.CustomException;
+import com.example.toy.common.result.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,7 @@ public class ApiService {
 
     public void apiTest() {
 
-//        throw new CustomException("custom test", errorCode);
+        throw new CustomException(ErrorCode.BAD_REQUEST);
 
     }
 

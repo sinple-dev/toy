@@ -67,8 +67,6 @@ public class Result {
         return status;
     }
 
-
-
     public void setMessage(String message) {
         this.message = message;
     }

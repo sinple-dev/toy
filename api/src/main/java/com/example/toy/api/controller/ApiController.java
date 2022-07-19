@@ -21,9 +21,14 @@ public class ApiController {
     @GetMapping("/test")
     public ResponseEntity<?> me() throws Exception {
 
-        apiService.apiTest();
+//        apiService.apiTest();
 
-        throw new NullPointerException("teastest");
+        String[] str = null;
+
+        System.out.println(str[10]);
+
+        throw new CustomException(ErrorCode.BAD_REQUEST);
+
 //        throw new CustomException("exception Controller");
 //        throw new CustomException(ErrorCode.BAD_REQUEST);
 
