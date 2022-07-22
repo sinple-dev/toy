@@ -1,9 +1,9 @@
 package com.example.toy.api.controller;
 
 import com.example.toy.api.service.ApiService;
-import com.example.toy.common.result.CustomException;
-import com.example.toy.common.result.ErrorCode;
+import com.example.toy.common.result.SuccessResult;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,32 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class ApiController {
 
-//    @Autowired
-//    UserRepository userRepository;
-
     private final ApiService apiService;
 
     @GetMapping("/test")
-    public ResponseEntity<?> me() throws Exception {
-
-//        apiService.apiTest();
-
-        String[] str = null;
-
-        System.out.println(str[10]);
-
-        throw new CustomException(ErrorCode.BAD_REQUEST);
-
-//        throw new CustomException("exception Controller");
-//        throw new CustomException(ErrorCode.BAD_REQUEST);
-
-//        System.out.println("api test input");
-//        SuccessResult result = new SuccessResult();
-//        result.put("total", "10000");
-//        result.setMessage("success");
-//        return ResponseEntity.status(HttpStatus.OK).body(result);
+    public ResponseEntity<?> me()  {
+        System.out.println("api test input");
+        SuccessResult result = new SuccessResult();
+        result.put("total", "10000");
+        result.setMessage("success");
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
-
 
 
 

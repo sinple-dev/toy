@@ -17,7 +17,7 @@ spring:
     open-in-view: false #웹요청이 완료될때까지 영속성을 가짐 (성능상 안 좋음)
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       use-new-id-generator-mappings: false # auto increment 에 대한 설정
     properties:
       hibernate:
