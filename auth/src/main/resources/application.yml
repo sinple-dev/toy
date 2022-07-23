@@ -8,6 +8,8 @@ server:
   servlet:
     encoding:
       force: true
+      charset: UTF-8
+      enabled: true
 
 spring:
   datasource:
@@ -42,9 +44,4 @@ spring:
 #    generate-ddl: true
 #    # 관련된 동작과 매핑된 sql을 콘솔에 출력 여부
 #    show-sql: true
-
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
 
