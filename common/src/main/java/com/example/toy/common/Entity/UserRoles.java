@@ -3,14 +3,13 @@ package com.example.toy.common.Entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-public class UsersRoles {
+public class UserRoles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +21,6 @@ public class UsersRoles {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ROLE_ID")
-    private Roles roles;
+    private Role role;
 
 }

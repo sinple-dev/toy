@@ -3,8 +3,6 @@ package com.example.toy.common.Entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class User {
 
     @Column
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<UsersRoles> usersRoles;
+    private List<UserRoles> userRoles;
 
     @Column
     private Date createdDt;

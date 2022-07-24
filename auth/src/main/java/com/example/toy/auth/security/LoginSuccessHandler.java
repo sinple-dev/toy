@@ -2,7 +2,7 @@ package com.example.toy.auth.security;
 
 import com.example.toy.common.Entity.AuthToken;
 import com.example.toy.common.Entity.User;
-import com.example.toy.common.principal.UserPrincipal;
+import com.example.toy.auth.principal.UserPrincipal;
 import com.example.toy.common.repository.AuthTokenRepository;
 import com.example.toy.common.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

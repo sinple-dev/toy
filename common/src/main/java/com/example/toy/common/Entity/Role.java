@@ -3,7 +3,6 @@ package com.example.toy.common.Entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -11,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-public class Roles {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +21,6 @@ public class Roles {
     private String roleName;
 
     @OneToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private List<UsersRoles> usersRoles;
+    private List<UserRoles> userRoles;
 
 }
